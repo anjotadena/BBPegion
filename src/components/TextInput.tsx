@@ -1,28 +1,19 @@
 import React from 'react';
-import {
-  NativeSyntheticEvent,
-  StyleSheet,
-  Text,
-  TextInputChangeEventData,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {TextInput as Input} from 'react-native-paper';
 
 import theme from '../core/theme';
 
-type TextInputProps = {
-  error?: string;
+type Props = React.ComponentProps<typeof Input> & {
+  errorText?: string;
   description?: string;
-  label?: string;
-  onChange?: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
 };
 
 const TextInput = ({
-  error,
+  errorText,
   description,
-  label,
-  onChange,
-}: TextInputProps): React.ReactElement => {
+  ...props
+}: Props): React.ReactElement => {
   return (
     <View style={styles.container}>
       <Input
@@ -30,13 +21,12 @@ const TextInput = ({
         selectionColor={theme.colors.primary}
         underlineColor="transparent"
         mode="outlined"
-        label={label}
-        onChange={onChange}
+        {...props}
       />
-      {description && !error && (
+      {description && !errorText && (
         <Text style={styles.description}>{description}</Text>
       )}
-      {error && <Text style={styles.error}>{error}</Text>}
+      {errorText && <Text style={styles.error}>{errorText}</Text>}
     </View>
   );
 };
