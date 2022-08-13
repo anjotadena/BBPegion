@@ -21,7 +21,7 @@ const StartScreen = ({}: Props): React.ReactElement => {
     <Background>
       <Header>My App1</Header>
       <Paragraph>Let's start!</Paragraph>
-      <Button mode="contained">Login</Button>
+      <Button mode="outlined">Login</Button>
       <Button mode="contained">Sign Up</Button>
     </Background>
   );
