@@ -3,12 +3,12 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {View} from 'react-native';
 import {Provider} from 'react-native-paper';
-import Button from './src/components/Button';
-import Header from './src/components/Header';
-import TextInput from './src/components/TextInput';
+import Button from './components/Button';
+import Header from './components/Header';
+import TextInput from './components/TextInput';
 
-import theme from './src/core/theme';
-import {StartScreen} from './src/screens';
+import theme from './core/theme';
+import {StartScreen} from './screens';
 
 const Stack = createStackNavigator();
 
