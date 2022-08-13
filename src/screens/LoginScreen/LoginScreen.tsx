@@ -58,6 +58,12 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
         errorText={password.error}
         onChangeText={text => setPassword({value: text, error: ''})}
       />
+      <View style={styles.row}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('ResetPasswordScreen')}>
+          <Text style={styles.link}>Forgot your password?</Text>
+        </TouchableOpacity>
+      </View>
       <Button mode="contained" onPress={handleOnLoginPressed}>
         Login
       </Button>
@@ -80,6 +86,15 @@ const styles = StyleSheet.create({
   link: {
     fontWeight: 'bold',
     color: theme.colors.primary,
+  },
+  forgotPassword: {
+    width: '100%',
+    alignItems: 'flex-end',
+    marginBottom: 24,
+  },
+  forgot: {
+    fontSize: 13,
+    color: theme.colors.secondary,
   },
 });
 

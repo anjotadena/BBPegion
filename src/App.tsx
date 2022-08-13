@@ -4,7 +4,12 @@ import React from 'react';
 import {Provider} from 'react-native-paper';
 
 import theme from './core/theme';
-import {LoginScreen, RegisterScreen, StartScreen} from './screens';
+import {
+  LoginScreen,
+  RegisterScreen,
+  ResetPasswordScreen,
+  StartScreen,
+} from './screens';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +23,10 @@ const App = () => {
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+          <Stack.Screen
+            name="ResetPasswordScreen"
+            component={ResetPasswordScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
