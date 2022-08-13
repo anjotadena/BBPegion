@@ -13,23 +13,21 @@ const TextInput = ({
   errorText,
   description,
   ...props
-}: Props): React.ReactElement => {
-  return (
-    <View style={styles.container}>
-      <Input
-        style={styles.input}
-        selectionColor={theme.colors.primary}
-        underlineColor="transparent"
-        mode="outlined"
-        {...props}
-      />
-      {description && !errorText && (
-        <Text style={styles.description}>{description}</Text>
-      )}
-      {errorText && <Text style={styles.error}>{errorText}</Text>}
-    </View>
-  );
-};
+}: Props): React.ReactElement => (
+  <View style={styles.container}>
+    <Input
+      style={styles.input}
+      selectionColor={theme.colors.primary}
+      underlineColor="transparent"
+      mode="outlined"
+      {...props}
+    />
+    {description && !errorText && (
+      <Text style={styles.description}>{description}</Text>
+    )}
+    {errorText && <Text style={styles.error}>{errorText}</Text>}
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
