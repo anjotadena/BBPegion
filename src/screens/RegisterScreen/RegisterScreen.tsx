@@ -10,6 +10,7 @@ import Header from '../../components/Header';
 import TextInput from '../../components/TextInput';
 import theme from '../../core/theme';
 import emailValidator from '../../utils/emailValidator';
+import nameValidator from '../../utils/nameValidator';
 import passwordValidator from '../../utils/passwordValidator';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -21,11 +22,12 @@ type Props = {
   navigation: ProfileScreenNavigationProp;
 };
 
-const RegisterScreen = ({navigation}: Props): React.ReactElement => {
+const LoginScreen = ({navigation}: Props): React.ReactElement => {
+  const [name, setName] = useState({value: '', error: ''});
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
 
-  const handleOnLoginPressed = () => {
+  const handleOnRegisterPressed = () => {
     console.log({email, password});
     const emailError = emailValidator(email.value);
 
@@ -38,13 +40,25 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
     if (passwordError) {
       setPassword({...password, error: passwordError});
     }
+
+    const nameError = nameValidator(name.value);
+
+    if (nameError) {
+      setName({...name, error: nameError});
+    }
   };
 
   return (
     <Background>
-      <BackButton goBack={navigation.goBack} />
+      <BackButton goBack={() => navigation.goBack()} />
       <Logo />
-      <Header>Welcome</Header>
+      <Header>Create Account</Header>
+      <TextInput
+        label="Name"
+        error={!!name.error}
+        errorText={name.error}
+        onChangeText={text => setEmail({value: text, error: ''})}
+      />
       <TextInput
         label="Email"
         error={!!email.error}
@@ -58,14 +72,13 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
         errorText={password.error}
         onChangeText={text => setPassword({value: text, error: ''})}
       />
-      <Button mode="contained" onPress={handleOnLoginPressed}>
-        Login
+      <Button mode="contained" onPress={handleOnRegisterPressed}>
+        Register
       </Button>
-
       <View style={styles.row}>
-        <Text>Don't have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
-          <Text style={styles.link}>Sign Up</Text>
+        <Text>Already have account?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+          <Text style={styles.link}>Login</Text>
         </TouchableOpacity>
       </View>
     </Background>
@@ -83,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterScreen;
+export default LoginScreen;

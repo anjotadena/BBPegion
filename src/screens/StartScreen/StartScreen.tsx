@@ -27,7 +27,11 @@ const StartScreen = ({navigation}: Props): React.ReactElement => {
         onPress={() => navigation.navigate('LoginScreen')}>
         Login
       </Button>
-      <Button mode="contained">Sign Up</Button>
+      <Button
+        mode="contained"
+        onPress={() => navigation.navigate('RegisterScreen')}>
+        Sign Up
+      </Button>
     </Background>
   );
 };

@@ -4,7 +4,7 @@ import React from 'react';
 import {Provider} from 'react-native-paper';
 
 import theme from './core/theme';
-import {LoginScreen, StartScreen} from './screens';
+import {LoginScreen, RegisterScreen, StartScreen} from './screens';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +17,7 @@ const App = () => {
           screenOptions={{headerShown: false}}>
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
