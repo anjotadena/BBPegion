@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 
 import {RootStackParamList} from '../../app.types';
 import {Background, Logo} from '../../components';
+import BackButton from '../../components/BackButton/BackButton';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import TextInput from '../../components/TextInput';
@@ -18,7 +19,7 @@ type Props = {
   navigation: ProfileScreenNavigationProp;
 };
 
-const LoginScreen = ({}: Props): React.ReactElement => {
+const LoginScreen = ({navigation}: Props): React.ReactElement => {
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
 
@@ -39,6 +40,7 @@ const LoginScreen = ({}: Props): React.ReactElement => {
 
   return (
     <Background>
+      <BackButton goBack={() => navigation.goBack()} />
       <Logo />
       <Header>Welcome</Header>
       <TextInput
