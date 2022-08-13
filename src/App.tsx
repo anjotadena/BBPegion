@@ -1,8 +1,10 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import firebase from 'firebase/app';
 import React from 'react';
 import {Provider} from 'react-native-paper';
 
+import {firebaseConfig} from './core/config';
 import theme from './core/theme';
 import {
   LoginScreen,
@@ -12,6 +14,10 @@ import {
 } from './screens';
 
 const Stack = createStackNavigator();
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 const App = () => {
   return (

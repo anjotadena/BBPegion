@@ -20,7 +20,7 @@ const StartScreen = ({navigation}: Props): React.ReactElement => {
   return (
     <Background>
       <Logo />
-      <Header>My App1</Header>
+      <Header>BBPegion</Header>
       <Paragraph>Let's start!</Paragraph>
       <Button
         mode="outlined"
