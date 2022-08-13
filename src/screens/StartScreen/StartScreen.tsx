@@ -16,13 +16,17 @@ type Props = {
   navigation: ProfileScreenNavigationProp;
 };
 
-const StartScreen = ({}: Props): React.ReactElement => {
+const StartScreen = ({navigation}: Props): React.ReactElement => {
   return (
     <Background>
       <Logo />
       <Header>My App1</Header>
       <Paragraph>Let's start!</Paragraph>
-      <Button mode="outlined">Login</Button>
+      <Button
+        mode="outlined"
+        onPress={() => navigation.navigate('LoginScreen')}>
+        Login
+      </Button>
       <Button mode="contained">Sign Up</Button>
     </Background>
   );
