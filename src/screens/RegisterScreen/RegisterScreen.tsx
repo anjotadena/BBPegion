@@ -65,11 +65,11 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
     if (response?.error) {
       Alert.alert('Error', response?.error);
     } else {
-      Alert.alert('Success', response?.user?.displayName);
-
       setName({value: '', error: ''});
       setEmail({value: '', error: ''});
       setPassword({value: '', error: ''});
+
+      Alert.alert('Success', response?.user?.displayName);
     }
     setLoading(false);
   };

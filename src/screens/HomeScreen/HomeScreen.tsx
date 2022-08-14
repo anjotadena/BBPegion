@@ -29,6 +29,7 @@ const HomeScreen = ({}: Props): React.ReactElement => {
     <Background>
       <Text>Home Screen</Text>
       <Button
+        mode="contained"
         loading={loading}
         disabled={loading}
         onPress={handleOnPressLogout}>

@@ -56,7 +56,6 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
     } else {
       setEmail({value: '', error: ''});
       setPassword({value: '', error: ''});
-      navigation.navigate('HomeScreen');
     }
   };
 
