@@ -45,7 +45,7 @@ const GoogleLogin = () => {
           style={styles.button}
           onPress={handleOnPressSignInGoogle}>
           <GoogleLogo />
-          <Text style={styles.buttonText}>Sign xin with Google</Text>
+          <Text style={styles.buttonText}>Sign in with Google</Text>
         </TouchableOpacity>
       </View>
     </View>

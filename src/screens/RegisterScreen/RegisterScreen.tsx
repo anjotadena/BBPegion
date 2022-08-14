@@ -6,6 +6,7 @@ import {signUpUser} from '../../api/auth';
 import {Background, Logo} from '../../components';
 import BackButton from '../../components/BackButton/BackButton';
 import Button from '../../components/Button';
+import GoogleLogin from '../../components/GoogleLogin/GoogleLogin';
 import Header from '../../components/Header';
 import TextInput from '../../components/TextInput';
 import theme from '../../core/theme';
@@ -104,6 +105,7 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
         onPress={handleOnRegisterPressed}>
         Register
       </Button>
+      <GoogleLogin />
       <View style={styles.row}>
         <Text>Already have account?</Text>
         <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
