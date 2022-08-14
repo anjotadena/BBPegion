@@ -1,6 +1,7 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {signUpUser} from '../../api/auth';
 
 import {RootStackParamList} from '../../app.types';
 import {Background, Logo} from '../../components';
@@ -22,12 +23,15 @@ type Props = {
   navigation: ProfileScreenNavigationProp;
 };
 
-const LoginScreen = ({navigation}: Props): React.ReactElement => {
+// @TODO
+// Refactor this logic
+const RegisterScreen = ({navigation}: Props): React.ReactElement => {
   const [name, setName] = useState({value: '', error: ''});
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
+  const [loading, setLoading] = useState(false);
 
-  const handleOnRegisterPressed = () => {
+  const handleOnRegisterPressed = async () => {
     console.log({email, password});
     const emailError = emailValidator(email.value);
 
@@ -46,6 +50,28 @@ const LoginScreen = ({navigation}: Props): React.ReactElement => {
     if (nameError) {
       setName({...name, error: nameError});
     }
+
+    if (nameError || emailError || passwordError) {
+      return;
+    }
+
+    setLoading(true);
+    const response = await signUpUser({
+      email: email.value,
+      name: name.value,
+      password: password.value,
+    });
+
+    if (response?.error) {
+      Alert.alert('Error', response?.error);
+    } else {
+      Alert.alert('Success', response?.user?.displayName);
+
+      setName({value: '', error: ''});
+      setEmail({value: '', error: ''});
+      setPassword({value: '', error: ''});
+    }
+    setLoading(false);
   };
 
   return (
@@ -57,7 +83,7 @@ const LoginScreen = ({navigation}: Props): React.ReactElement => {
         label="Name"
         error={!!name.error}
         errorText={name.error}
-        onChangeText={text => setEmail({value: text, error: ''})}
+        onChangeText={text => setName({value: text, error: ''})}
       />
       <TextInput
         label="Email"
@@ -72,7 +98,10 @@ const LoginScreen = ({navigation}: Props): React.ReactElement => {
         errorText={password.error}
         onChangeText={text => setPassword({value: text, error: ''})}
       />
-      <Button mode="contained" onPress={handleOnRegisterPressed}>
+      <Button
+        mode="contained"
+        loading={loading}
+        onPress={handleOnRegisterPressed}>
         Register
       </Button>
       <View style={styles.row}>
@@ -96,4 +125,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegisterScreen;
