@@ -38,14 +38,14 @@ const GoogleLogin = () => {
   return (
     <View style={styles.container}>
       <View style={styles.divider}>
-        <Text>Or</Text>
+        <Text style={styles.dividerText}>Or</Text>
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           style={styles.button}
           onPress={handleOnPressSignInGoogle}>
           <GoogleLogo />
-          <Text style={styles.buttonText}>Sign in with Google</Text>
+          <Text style={styles.buttonText}>Sign xin with Google</Text>
         </TouchableOpacity>
       </View>
     </View>
