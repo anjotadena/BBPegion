@@ -1,14 +1,15 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {loginUser} from '../../api/auth';
 
-import {RootStackParamList} from '../../app.types';
 import {Background, Logo} from '../../components';
 import BackButton from '../../components/BackButton/BackButton';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import TextInput from '../../components/TextInput';
 import theme from '../../core/theme';
+import {RootStackParamList} from '../../types/app';
 import emailValidator from '../../utils/emailValidator';
 import passwordValidator from '../../utils/passwordValidator';
 
@@ -24,8 +25,9 @@ type Props = {
 const RegisterScreen = ({navigation}: Props): React.ReactElement => {
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
+  const [loading, setLoading] = useState(false);
 
-  const handleOnLoginPressed = () => {
+  const handleOnLoginPressed = async () => {
     console.log({email, password});
     const emailError = emailValidator(email.value);
 
@@ -38,6 +40,24 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
     if (passwordError) {
       setPassword({...password, error: passwordError});
     }
+
+    if (emailError || passwordError) {
+      return;
+    }
+    setLoading(true);
+    const response = await loginUser({
+      email: email.value,
+      password: password.value,
+    });
+
+    setLoading(false);
+    if (response?.error) {
+      Alert.alert('Error', response.error);
+    } else {
+      setEmail({value: '', error: ''});
+      setPassword({value: '', error: ''});
+      navigation.navigate('HomeScreen');
+    }
   };
 
   return (
@@ -47,6 +67,7 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
       <Header>Welcome</Header>
       <TextInput
         label="Email"
+        value={email.value}
         error={!!email.error}
         errorText={email.error}
         onChangeText={text => setEmail({value: text, error: ''})}
@@ -54,6 +75,7 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
       <TextInput
         secureTextEntry
         label="Password"
+        value={password.value}
         error={!!password.error}
         errorText={password.error}
         onChangeText={text => setPassword({value: text, error: ''})}
@@ -64,7 +86,11 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
           <Text style={styles.link}>Forgot your password?</Text>
         </TouchableOpacity>
       </View>
-      <Button mode="contained" onPress={handleOnLoginPressed}>
+      <Button
+        mode="contained"
+        loading={loading}
+        disabled={loading}
+        onPress={handleOnLoginPressed}>
         Login
       </Button>
 

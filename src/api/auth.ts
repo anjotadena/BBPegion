@@ -30,17 +30,17 @@ export const loginUser = async ({
 }: {
   email: string;
   password: string;
-}): Promise<firebase.User | {error: string} | null> => {
+}) => {
   try {
     const {user} = await firebase
       .auth()
       .signInWithEmailAndPassword(email, password);
 
-    return Promise.resolve(user);
+    return {user};
   } catch (error: any) {
-    return Promise.resolve({
+    return {
       error: error?.message || 'Failed to login! Invalid credentials.',
-    });
+    };
   }
 };
 

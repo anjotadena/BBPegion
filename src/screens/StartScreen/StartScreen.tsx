@@ -2,10 +2,10 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import {Paragraph} from 'react-native-paper';
 
-import {RootStackParamList} from '../../app.types';
 import {Background, Logo} from '../../components';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
+import {RootStackParamList} from '../../types/app';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
