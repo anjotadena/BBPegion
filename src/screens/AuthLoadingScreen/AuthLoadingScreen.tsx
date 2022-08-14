@@ -2,6 +2,8 @@ import firebase from 'firebase/app';
 import React from 'react';
 import {ActivityIndicator} from 'react-native-paper';
 
+import 'firebase/auth';
+
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Background} from '../../components';
 import {RootStackParamList} from '../../types/app';
