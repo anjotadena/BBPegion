@@ -19,12 +19,15 @@ type Props = {
 
 const AuthLoadingScreen = ({navigation}: Props): React.ReactElement => {
   firebase.auth().onAuthStateChanged(user => {
+    console.log(user, 'user');
     if (user) {
       navigation.reset({
-        routes: [{name: 'HomeScreen'}],
+        index: 0,
+        routes: [{name: 'Home'}],
       });
     } else {
       navigation.reset({
+        index: 0,
         routes: [{name: 'StartScreen'}],
       });
     }

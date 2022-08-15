@@ -1,11 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import firebase from 'firebase/app';
 import React from 'react';
 import {Provider} from 'react-native-paper';
 import {HomeIcon, ProfileIcon} from './components';
-
 import {firebaseConfig} from './core/config';
 import theme from './core/theme';
 import {
@@ -20,35 +20,11 @@ import {
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
-
-const BottomNavigation = () => {
-  return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
-      }}>
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarIcon: ({color}): JSX.Element => <HomeIcon fill={color} />,
-        }}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          tabBarIcon: ({color}): JSX.Element => <ProfileIcon fill={color} />,
-        }}
-      />
-    </Tab.Navigator>
-  );
-};
 
 const App = () => {
   return (
@@ -68,11 +44,41 @@ const App = () => {
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}
           />
-          <Stack.Screen name="HomeScreen" component={BottomNavigation} />
+          <Stack.Screen name="Home" component={DrawerNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
 };
+
+const BottomTabNavigator = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: '#e91e63',
+      }}>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({color}): JSX.Element => <HomeIcon fill={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({color}): JSX.Element => <ProfileIcon fill={color} />,
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+const DrawerNavigator = () => (
+  <Drawer.Navigator>
+    <Drawer.Screen name="Home" component={BottomTabNavigator} />
+  </Drawer.Navigator>
+);
 
 export default App;
