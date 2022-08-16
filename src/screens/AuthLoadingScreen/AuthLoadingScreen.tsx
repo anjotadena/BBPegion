@@ -5,7 +5,6 @@ import { ActivityIndicator } from 'react-native-paper';
 import 'firebase/auth';
 
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Alert } from 'react-native';
 import { Background } from '../../components';
 import { RootStackParamList } from '../../types/app';
 
@@ -20,9 +19,7 @@ type Props = {
 
 const AuthLoadingScreen = ({navigation}: Props): React.ReactElement => {
   firebase.auth().onAuthStateChanged(user => {
-    // console.log(user, 'user');
     if (user) {
-      Alert.alert('GO TO DRAWER');
       navigation.reset({
         index: 0,
         routes: [{name: 'Home'}],
