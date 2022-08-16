@@ -1,12 +1,12 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import firebase from 'firebase/app';
 import React from 'react';
-import {Provider} from 'react-native-paper';
-import {HomeIcon, ProfileIcon} from './components';
-import {firebaseConfig} from './core/config';
+import { Provider } from 'react-native-paper';
+import { HomeIcon, ProfileIcon } from './components';
+import { firebaseConfig } from './core/config';
 import theme from './core/theme';
 import {
   AuthLoadingScreen,
@@ -15,7 +15,7 @@ import {
   ProfileScreen,
   RegisterScreen,
   ResetPasswordScreen,
-  StartScreen,
+  StartScreen
 } from './screens';
 
 const Stack = createStackNavigator();
@@ -58,14 +58,14 @@ const BottomTabNavigator = () => {
         tabBarActiveTintColor: '#e91e63',
       }}>
       <Tab.Screen
-        name="Home"
+        name="TabHome"
         component={HomeScreen}
         options={{
           tabBarIcon: ({color}): JSX.Element => <HomeIcon fill={color} />,
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="TabProfile"
         component={ProfileScreen}
         options={{
           tabBarIcon: ({color}): JSX.Element => <ProfileIcon fill={color} />,
@@ -77,7 +77,7 @@ const BottomTabNavigator = () => {
 
 const DrawerNavigator = () => (
   <Drawer.Navigator>
-    <Drawer.Screen name="Home" component={BottomTabNavigator} />
+    <Drawer.Screen name="HomeDrawer" component={BottomTabNavigator} />
   </Drawer.Navigator>
 );
 

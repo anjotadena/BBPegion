@@ -5,4 +5,5 @@ export type RootStackParamList = {
   RegisterScreen: undefined;
   ResetPasswordScreen: undefined;
   Home: undefined;
+  HomeDrawer: undefined;
 };

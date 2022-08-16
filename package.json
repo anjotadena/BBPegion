@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "cc": "rimraf node_modules/.cache/babel-loader/*,",
-    "android": "npm run cc && react-native run-android",
+    "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -21,7 +20,7 @@
     "react-native": "0.69.4",
     "react-native-gesture-handler": "^2.5.0",
     "react-native-paper": "^4.12.4",
-    "react-native-reanimated": "^2.9.1",
+    "react-native-reanimated": "2.2.4",
     "react-native-safe-area-context": "^4.3.1",
     "react-native-screens": "^3.15.0",
     "react-native-status-bar-height": "^2.6.0",
