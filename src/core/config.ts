@@ -1,13 +1,22 @@
+import {
+  REACT_APP_ANDROID_GOOGLE_CLIENT_ID,
+  REACT_APP_FIREBASE_API_KEY,
+  REACT_APP_FIREBASE_APP_ID,
+  REACT_APP_FIREBASE_AUTH_DOMAIN,
+  REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  REACT_APP_FIREBASE_PROJECT_ID,
+  REACT_APP_FIREBASE_STORAGE_BUCKET,
+  REACT_APP_IOS_GOOGLE_CLIENT_ID,
+} from '@env';
+
 export const firebaseConfig = {
-  apiKey: 'AIzaSyBeO9Fuv-wsVxrX4e-k6QeqeFq-nbzmqug',
-  authDomain: 'bbpegion.firebaseapp.com',
-  projectId: 'bbpegion',
-  storageBucket: 'bbpegion.appspot.com',
-  messagingSenderId: '56722177798',
-  appId: '1:56722177798:web:2d669bcce08a038a596887',
+  apiKey: REACT_APP_FIREBASE_API_KEY,
+  authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: REACT_APP_FIREBASE_APP_ID,
 };
 
-export const IOS_GOOGLE_CLIENT_ID =
-  '665910584057-j1huq5r0olkebtjnf90a04ooqof9tkip.apps.googleusercontent.com';
-export const ANDROID_GOOGLE_CLIENT_ID =
-  '665910584057-4573rvnfkr446pure53aclvp6gssalmm.apps.googleusercontent.com';
+export const IOS_GOOGLE_CLIENT_ID = REACT_APP_IOS_GOOGLE_CLIENT_ID;
+export const ANDROID_GOOGLE_CLIENT_ID = REACT_APP_ANDROID_GOOGLE_CLIENT_ID;

@@ -1,3 +1,4 @@
+import {REACT_APP_NAME} from '@env';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -28,10 +29,10 @@ const DrawerContent = () => {
           <Avatar.Image
             size={80}
             source={{
-              uri: 'https://pbs.twimg.com/profile_images/1195087399661056019/pYAaQSJS_400x400.jpg',
+              uri: 'https://www.teahub.io/photos/full/298-2981521_32-cute-facebook-profile-pictures-for-girls-cute.jpg',
             }}
           />
-          <Title style={styles.title}>Anyaku</Title>
+          <Title style={styles.title}>{REACT_APP_NAME}Anyaku</Title>
           <Caption style={styles.caption}>@tony_venits</Caption>
           <View style={styles.row}>
             <View style={styles.section}>
