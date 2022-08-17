@@ -1,5 +1,6 @@
 export * from './BackButton';
 export * from './Background';
+export * from './DrawerContent';
 export * from './GoogleLogin';
 export * from './GoogleLogo';
 export * from './HomeIcon';
