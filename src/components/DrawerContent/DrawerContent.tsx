@@ -31,7 +31,7 @@ const DrawerContent = () => {
               uri: 'https://pbs.twimg.com/profile_images/1195087399661056019/pYAaQSJS_400x400.jpg',
             }}
           />
-          <Title style={styles.title}>Tony Hook</Title>
+          <Title style={styles.title}>Anyaku</Title>
           <Caption style={styles.caption}>@tony_venits</Caption>
           <View style={styles.row}>
             <View style={styles.section}>
