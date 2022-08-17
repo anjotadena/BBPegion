@@ -1,4 +1,3 @@
-import {REACT_APP_NAME} from '@env';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -32,8 +31,8 @@ const DrawerContent = () => {
               uri: 'https://www.teahub.io/photos/full/298-2981521_32-cute-facebook-profile-pictures-for-girls-cute.jpg',
             }}
           />
-          <Title style={styles.title}>{REACT_APP_NAME}Anyaku</Title>
-          <Caption style={styles.caption}>@tony_venits</Caption>
+          <Title style={styles.title}>Anyaku</Title>
+          <Caption style={styles.caption}>@anyaku</Caption>
           <View style={styles.row}>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
