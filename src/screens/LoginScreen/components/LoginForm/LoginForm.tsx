@@ -44,13 +44,13 @@ const LoginForm = ({}: Props): React.ReactElement => {
     initialValues: FORM_INITIAL_VALUES,
     onSubmit: async values => {
       setLoading(true);
-      try {
-        await loginUser(values);
-      } catch (e) {
-        Alert.alert(e?.message);
-      } finally {
-        setLoading(false);
+      const response = await loginUser(values);
+
+      if (response.error) {
+        Alert.alert(response.error);
       }
+
+      setLoading(false);
     },
   });
 
