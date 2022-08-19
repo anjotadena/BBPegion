@@ -44,7 +44,6 @@ const LoginForm = ({}: Props): React.ReactElement => {
     initialValues: FORM_INITIAL_VALUES,
     onSubmit: async values => {
       setLoading(true);
-
       try {
         await loginUser(values);
       } catch (e) {
@@ -58,7 +57,7 @@ const LoginForm = ({}: Props): React.ReactElement => {
   return (
     <>
       <TextInput
-        label="Emailx"
+        label="Email"
         error={touched.email && !!errors.email}
         errorText={errors.email}
         onChangeText={handleChange('email')}
