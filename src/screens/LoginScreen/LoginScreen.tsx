@@ -25,7 +25,7 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
       <BackButton goBack={navigation.goBack} />
       <Logo />
       <Header>Welcome</Header>
-      <LoginForm onLogin={() => {}} />
+      <LoginForm />
       <GoogleLogin />
       <View style={styles.row}>
         <Text>Don't have an account?</Text>

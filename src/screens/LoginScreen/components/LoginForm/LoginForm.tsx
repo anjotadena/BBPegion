@@ -32,9 +32,7 @@ type ProfileScreenNavigationProp = StackNavigationProp<
   'AuthLoadingScreen'
 >;
 
-type Props = {
-  onLogin: () => void;
-};
+type Props = {};
 
 const LoginForm = ({}: Props): React.ReactElement => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -44,13 +42,14 @@ const LoginForm = ({}: Props): React.ReactElement => {
     initialValues: FORM_INITIAL_VALUES,
     onSubmit: async values => {
       setLoading(true);
+
       const response = await loginUser(values);
+
+      setLoading(false);
 
       if (response.error) {
         Alert.alert(response.error);
       }
-
-      setLoading(false);
     },
   });
 
