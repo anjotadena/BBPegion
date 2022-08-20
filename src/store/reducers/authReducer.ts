@@ -70,4 +70,8 @@ const authUserSlice = createSlice({
   },
 });
 
+export const authAction = authUserSlice.actions;
+
+export const selectStatus = (state: AuthUserState) => state.status;
+
 export default authUserSlice.reducer;
