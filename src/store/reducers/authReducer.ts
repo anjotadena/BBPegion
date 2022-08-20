@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+export const AUTH_USER_KEY = 'authUser';
+
 export type AuthUser = {
   name: string;
 };
@@ -14,8 +16,12 @@ const initialState: AuthUserState = {
   loading: false,
 };
 
+// export const setAuthUser = createAsyncThunk<{authUser: AuthUser}>(
+//   'setAuthUser'
+// );
+
 const authUserSlice = createSlice({
-  name: 'authUser',
+  name: AUTH_USER_KEY,
   initialState,
   reducers: {},
 });
