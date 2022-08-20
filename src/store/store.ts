@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import {useDispatch} from 'react-redux';
+import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 
 import {authReducer} from './reducers';
 
@@ -19,5 +19,7 @@ const store = configureStore({
 export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
+
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export default store;

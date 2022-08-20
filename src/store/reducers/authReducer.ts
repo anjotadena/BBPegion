@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 import {loginUser as firebaseLoginUser} from '../../api/auth';
+import {RootState} from '../store';
 
 export const AUTH_USER_KEY = 'authUser';
 export const ACTION_AUTH_LOGIN = 'auth/loginUser';
@@ -44,7 +45,7 @@ export const loginUser = createAsyncThunk<
     });
   }
 
-  return user;
+  return {name: user?.displayName};
 });
 
 const authUserSlice = createSlice({
@@ -72,6 +73,7 @@ const authUserSlice = createSlice({
 
 export const authAction = authUserSlice.actions;
 
-export const selectStatus = (state: AuthUserState) => state.status;
+export const selectStatus = (state: RootState): string | undefined =>
+  state.authUser.status;
 
 export default authUserSlice.reducer;
