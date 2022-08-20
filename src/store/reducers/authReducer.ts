@@ -9,7 +9,7 @@ const LOGIN_ERROR_MESSAGE = 'Failed to login user.';
 
 export type AuthUserLoginPayload = {email: string; password: string};
 
-export type LogUserError = {
+export type AuthLoginUserError = {
   message: string;
 };
 
@@ -22,7 +22,7 @@ export const STATUS_TYPE_IDLE = 'idle';
 
 export type AuthUserState = {
   authUser: AuthUser | null;
-  error?: LogUserError | null;
+  error?: AuthLoginUserError | null;
   status?: typeof STATUS_TYPE_LOADING | typeof STATUS_TYPE_IDLE;
 };
 
@@ -35,7 +35,7 @@ const initialState: AuthUserState = {
 export const loginUser = createAsyncThunk<
   AuthUser,
   AuthUserLoginPayload,
-  {rejectValue: LogUserError}
+  {rejectValue: AuthLoginUserError}
 >(ACTION_AUTH_LOGIN, async (payload: AuthUserLoginPayload, thunkApi: any) => {
   const {user, error} = await firebaseLoginUser(payload);
 
@@ -75,5 +75,9 @@ export const authAction = authUserSlice.actions;
 
 export const selectStatus = (state: RootState): string | undefined =>
   state.authUser.status;
+
+export const selectError = (
+  state: RootState
+): AuthLoginUserError | null | undefined => state.authUser.error;
 
 export default authUserSlice.reducer;

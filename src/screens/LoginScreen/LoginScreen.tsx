@@ -19,7 +19,7 @@ type Props = {
   navigation: ProfileScreenNavigationProp;
 };
 
-const RegisterScreen = ({navigation}: Props): React.ReactElement => {
+const LoginScreen = ({navigation}: Props): React.ReactElement => {
   return (
     <Background>
       <BackButton goBack={navigation.goBack} />
@@ -37,4 +37,4 @@ const RegisterScreen = ({navigation}: Props): React.ReactElement => {
   );
 };
 
-export default RegisterScreen;
+export default LoginScreen;

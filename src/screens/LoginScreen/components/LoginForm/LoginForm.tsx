@@ -1,8 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useFormik} from 'formik';
-import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Alert, TouchableOpacity, View} from 'react-native';
 import {Button, Text} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import * as yup from 'yup';
@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import TextInput from '../../../../components/TextInput';
 import {
   loginUser,
+  selectError,
   selectStatus,
   STATUS_TYPE_LOADING,
 } from '../../../../store/reducers/authReducer';
@@ -41,10 +42,13 @@ type ProfileScreenNavigationProp = StackNavigationProp<
 type Props = {};
 
 const LoginForm = ({}: Props): React.ReactElement => {
+  // Dispatcher
   const dispatch = useDispatch<AppDispatch>();
 
   // Get the current `status`:
   const status = useTypedSelector(selectStatus);
+
+  const loginError = useTypedSelector(selectError);
 
   // Use to navigate to another screen
   const navigation = useNavigation<ProfileScreenNavigationProp>();
@@ -55,6 +59,13 @@ const LoginForm = ({}: Props): React.ReactElement => {
     initialValues: FORM_INITIAL_VALUES,
     onSubmit: async values => dispatch(loginUser(values)),
   });
+
+  // Listener for login error state
+  useEffect(() => {
+    if (loginError) {
+      Alert.alert(loginError?.message);
+    }
+  }, [loginError]);
 
   return (
     <>
