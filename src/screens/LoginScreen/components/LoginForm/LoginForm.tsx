@@ -1,13 +1,20 @@
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useFormik} from 'formik';
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {Alert, TouchableOpacity, View} from 'react-native';
 import {Button, Text} from 'react-native-paper';
+import {useDispatch} from 'react-redux';
 import * as yup from 'yup';
-import {loginUser} from '../../../../api/auth';
 
 import TextInput from '../../../../components/TextInput';
+import {
+  loginUser,
+  selectError,
+  selectStatus,
+  STATUS_TYPE_LOADING,
+} from '../../../../store/reducers/authReducer';
+import {AppDispatch, useTypedSelector} from '../../../../store/store';
 import {RootStackParamList} from '../../../../types/app';
 import styles from './styles';
 
@@ -35,23 +42,30 @@ type ProfileScreenNavigationProp = StackNavigationProp<
 type Props = {};
 
 const LoginForm = ({}: Props): React.ReactElement => {
-  const [loading, setLoading] = useState<boolean>(false);
+  // Dispatcher
+  const dispatch = useDispatch<AppDispatch>();
+
+  // Get the current `status`:
+  const status = useTypedSelector(selectStatus);
+
+  const loginError = useTypedSelector(selectError);
+
+  // Use to navigate to another screen
   const navigation = useNavigation<ProfileScreenNavigationProp>();
+
+  // Handle form validation
   const {touched, handleChange, isValid, errors, handleSubmit} = useFormik({
     validationSchema,
     initialValues: FORM_INITIAL_VALUES,
-    onSubmit: async values => {
-      setLoading(true);
-
-      const response = await loginUser(values);
-
-      setLoading(false);
-
-      if (response.error) {
-        Alert.alert(response.error);
-      }
-    },
+    onSubmit: async values => dispatch(loginUser(values)),
   });
+
+  // Listener for login error state
+  useEffect(() => {
+    if (loginError) {
+      Alert.alert(loginError?.message);
+    }
+  }, [loginError]);
 
   return (
     <>
@@ -76,7 +90,7 @@ const LoginForm = ({}: Props): React.ReactElement => {
       </View>
       <Button
         mode="contained"
-        loading={loading}
+        loading={status === STATUS_TYPE_LOADING}
         disabled={!isValid}
         onPress={handleSubmit}>
         Login
