@@ -1,7 +1,7 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 
-import {authReducer} from './reducers';
+import authReducer from './auth';
 
 const rootReducer = combineReducers({
   authUser: authReducer,
@@ -16,6 +16,8 @@ const store = configureStore({
 // Nothing special here...
 // just following @reduxjs/toolkit documentation
 // https://redux-toolkit.js.org/usage/usage-with-typescript
+
+// helpers
 export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
