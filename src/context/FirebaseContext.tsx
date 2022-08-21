@@ -27,17 +27,12 @@ const FirebaseProvider = ({children}: Props) => {
     const unsubscribeAuthStateListener = firebase
       .auth()
       .onAuthStateChanged(user => {
-        if (user) {
-          navigation.reset({
-            index: 0,
-            routes: [{name: 'Home' as never}],
-          });
-        } else {
-          navigation.reset({
-            index: 0,
-            routes: [{name: 'StartScreen' as never}],
-          });
-        }
+        const routeScreen = user ? 'Home' : 'StartScreen';
+
+        navigation.reset({
+          index: 0,
+          routes: [{name: routeScreen as never}],
+        });
       });
 
     return () => unsubscribeAuthStateListener();
