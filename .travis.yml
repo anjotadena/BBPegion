@@ -20,6 +20,7 @@ jobs:
         - nvm install 16.16.0
         - npm i -g yarn@1.22.19
       language: android
+      dist: trusty
       android:
         components:
           - tools
@@ -30,7 +31,8 @@ jobs:
       sudo: true
       install:
         - yarn install
-      script:
-        - cd /usr/local/android-sdk/tools/bin
-        - yes | ./sdkmanager --update
-        - cd - && cd android && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && cd ..
+      # @TODO
+      # script:
+      #   - cd /usr/local/android-sdk/tools/bin
+      #   - yes | ./sdkmanager --update
+      #   - cd - && cd android && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && cd ..
