@@ -34,7 +34,7 @@ jobs:
       jdk:
         - openjdk11
       script:
-        - jdk_switcher use openjdk11
+        - java --version
         - cd /usr/local/android-sdk/tools/bin
         - yes | ./sdkmanager --update
         - cd - && cd android && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && cd ..
