@@ -1,7 +1,7 @@
 # 🚀 React Native Boilerplate
 
 <div align="center">
-![Travis](https://api.travis-ci.com/anjotadena/BBPegion.svg?branch=master) [![Code Climate](https://codeclimate.com/github/anjotadena/BBPegion/badges/gpa.svg)](https://codeclimate.com/github/anjotadena/BBPegion) ![iOS and Android](https://img.shields.io/badge/platform-Android%20%7C%20iOS-blue.svg?style=flat) ![License](https://img.shields.io/github/license/anjotadena/BBPegion.svg) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md) ![Code Size](https://img.shields.io/github/languages/code-size/anjotadena/BBPegion.svg) ![Releases](https://img.shields.io/github/v/release/anjotadena/BBPegion.svg?style=flat)
+![Travis](https://api.travis-ci.com/anjotadena/BBPegion.svg?branch=master)
 </div>
 
 ## Prerequisites
